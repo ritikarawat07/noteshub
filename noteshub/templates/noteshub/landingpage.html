@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCE Notes Hub - Dronacharya College of Engineering</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features {
+            background: white;
+            padding: 80px 0;
+            margin-top: -50px;
+            border-radius: 50px 50px 0 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+        }
+
+        .feature-icon.blue { background: linear-gradient(45deg, #4facfe, #00f2fe); }
+        .feature-icon.green { background: linear-gradient(45deg, #43e97b, #38f9d7); }
+        .feature-icon.purple { background: linear-gradient(45deg, #fa709a, #fee140); }
+        .feature-icon.orange { background: linear-gradient(45deg, #ff9a9e, #fecfef); }
+        .feature-icon.red { background: linear-gradient(45deg, #ff6b6b, #ffa726); }
+        .feature-icon.teal { background: linear-gradient(45deg, #4ecdc4, #44a08d); }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn-large {
+            padding: 18px 36px;
+            font-size: 18px;
+        }
+
+        .btn-white {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hero h2 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">📚</div>
+                    <div class="logo-text">
+                        <h1>DCE Notes Hub</h1>
+                        <p>Dronacharya College of Engineering</p>
+                    </div>
+                </div>
+                <div class="auth-buttons">
+                    <a href="{% url 'studentlogin' %}" class="btn btn-secondary">
+                        👨‍🎓 Student Login
+                    </a>
+                    <a href="{% url 'teacherlogin' %}" class="btn btn-primary">
+                        👩‍🏫 Teacher Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2 class="fade-in">Welcome to DCE Notes Hub</h2>
+                <p class="fade-in">Your centralized platform for accessing, sharing, and managing academic notes across all branches and years at Dronacharya College of Engineering.</p>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon blue">📖</div>
+                        <h3>Organized Notes</h3>
+                        <p>Notes organized by year, branch, and subject for easy access and better learning experience.</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon green">📤</div>
+                        <h3>Easy Upload</h3>
+                        <p>Students can upload notes with teacher approval system ensuring quality content.</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon purple">📥</div>
+                        <h3>Quick Download</h3>
+                        <p>Download notes instantly in various formats with just one click.</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon orange">👥</div>
+                        <h3>Dual Access</h3>
+                        <p>Separate portals for students and teachers with role-based features and permissions.</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon red">🛡️</div>
+                        <h3>Quality Control</h3>
+                        <p>Teacher approval ensures high-quality content and maintains academic standards.</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon teal">✅</div>
+                        <h3>Verified Content</h3>
+                        <p>All notes are verified and approved by faculty members before publication.</p>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <h3>Ready to Get Started?</h3>
+                    <p>Choose your role to access the notes hub</p>
+                    <div class="cta-buttons">
+                        <a href="{% url 'studentlogin' %}" class="btn btn-white btn-large">
+                            👨‍🎓 Student Portal
+                        </a>
+                        <a href="{% url 'teacherlogin' %}" class="btn btn-outline btn-large">
+                            👩‍🏫 Teacher Portal
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Dronacharya College of Engineering. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Fade in animation on scroll
+        function fadeInOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Initial load animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                fadeInOnScroll();
+            }, 100);
+        });
+
+        // Scroll animation
+        window.addEventListener('scroll', fadeInOnScroll);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Button hover effects
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
