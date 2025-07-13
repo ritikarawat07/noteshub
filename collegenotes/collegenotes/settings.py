@@ -123,9 +123,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Static and media (if not already added)
+# Static and media settings
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Ensure media directories exist
+import os
+os.makedirs(os.path.join(MEDIA_ROOT, 'noteshub', 'Notes_pdfs'), exist_ok=True)
 
 
 # Internationalization
