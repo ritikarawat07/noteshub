@@ -42,6 +42,16 @@ class TeacherLoginForm(forms.Form):
             'id': 'id_username'
         })
     )
+    roll_number = forms.CharField(
+        label="Roll Number (Optional)",
+        max_length=20,
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter roll number (optional)',
+            'id': 'id_roll_number'
+        })
+    )
     password = forms.CharField(
         label="Password",
         widget=forms.PasswordInput(attrs={

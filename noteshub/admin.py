@@ -31,9 +31,19 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('roll_number', 'username', 'password1', 'password2', 'is_teacher', 'is_student', 'is_active'),
+            'fields': ('username', 'roll_number', 'password1', 'password2', 'is_teacher', 'is_student', 'is_active'),
         }),
     )
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        if obj and obj.is_teacher:
+            form.base_fields['username'].required = True
+            form.base_fields['roll_number'].required = False
+        elif obj and obj.is_student:
+            form.base_fields['username'].required = False
+            form.base_fields['roll_number'].required = True
+        return form
 
     list_display = ('roll_number', 'username', 'is_teacher', 'is_student', 'is_active')
     list_filter = ('is_teacher', 'is_student', 'is_active')

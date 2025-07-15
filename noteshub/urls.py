@@ -12,6 +12,7 @@ urlpatterns = [
     path('teacherlogin/teacherupload/', views.teacherupload, name='teacherupload'),
     path('approve/<int:note_id>/', views.approve_note, name='approve_note'),
     path('reject/<int:note_id>/', views.reject_note, name='reject_note'),
+    path('pending/<int:note_id>/', views.pending_note, name='pending_note'),
     path('logout/', views.logoutview, name='logout'),
     path('delete/<int:note_id>/', views.delete_note, name='delete_note'),
     path('view/<int:note_id>/', views.view_note, name='view_note'),
