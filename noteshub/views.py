@@ -245,6 +245,9 @@ def delete_note(request, note_id):
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         return JsonResponse({'status': 'success', 'message': 'Note deleted successfully!'})
     
+    # Redirect to the appropriate dashboard based on user role
+    if request.user.is_student:
+        return redirect('studentdashboard')
     return redirect('teacherdashboard')
 
 @login_required
